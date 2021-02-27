@@ -1,0 +1,21 @@
+<table class="table table-striped">
+    <thead>
+  <tr>
+    <th scope="col">No. Cédula</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Apellido</th>
+    <th scope="col">Fecha de Nacimiento</th>
+  </tr>
+</thead>
+<tbody>
+
+  <tr *ngFor="let person of dataPersons">
+    <th>{{person.idCard}}</th>
+    <td>{{person.name}}</td>
+    <td>{{person.lastName}}</td>
+    <td>{{person.dateBirth}}</td>
+  </tr>
+
+</tbody>
+
+</table>

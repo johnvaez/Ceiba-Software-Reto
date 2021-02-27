@@ -1,0 +1,33 @@
+
+
+<b>FORMULARIO DE REGISTRO</b>
+<form [formGroup]="register" (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
+    <div class="row g-3">
+    <div class="col">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && validate.name.errors }">
+    </div>
+    <div class="col">
+        <label class="form-label">Apellido</label>
+        <input type="text" class="form-control" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && validate.lastName.errors }">
+    </div>
+    </div>
+
+    <div class="row g-3">
+    <div class="col">
+        <label class="form-label">No. cédula</label>
+        <input type="text" class="form-control" (focusout)="onFocusOutEvent($event)" formControlName="idCard" [ngClass]="{ 'is-invalid': submitted && validate.idCard.errors }">
+    </div>
+    <div class="col">
+        <label class="form-label">Apellido</label>
+        <input type="date" class="form-control" (change)="validateAge($event)" formControlName="dateBirth" [ngClass]="{ 'is-invalid': submitted && validate.dateBirth.errors }">
+    </div>
+    </div>
+    <div class="row g-3">
+    <div class="col">
+        <br />
+        <button type="submit" class="btn btn-primary" style="float: right;">Guardar</button>
+    </div>
+    </div>
+</form>
+
