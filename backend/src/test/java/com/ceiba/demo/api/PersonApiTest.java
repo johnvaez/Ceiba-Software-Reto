@@ -32,17 +32,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class PersonApiTest {
 
     private static final Integer DEFAULT_IDCARD = 1;
-    private static final Integer UPDATE_IDCARD = 2;
-
     private static final String  DEFAULT_NAME = "AAAA";
-    private static final String  UPDATE_NAME = "BBBB";
-
     private static final String  DEFAULT_LASTNAME = "AAAA";
-    private static final String  UPDATE_LASTNAME = "BBBB";
-
     private static final LocalDate DEFAULT_DATEBIRTH = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATE_DATEBIRTH = LocalDate.now(ZoneId.systemDefault());
-
     private static final String TEST_API_URL = "/api/persons";
 
     private PersonsModel personsModel;
@@ -62,15 +54,6 @@ class PersonApiTest {
                 .name(DEFAULT_NAME)
                 .lastName(DEFAULT_LASTNAME)
                 .dateBirth(DEFAULT_DATEBIRTH)
-                .build();
-    }
-
-    public static PersonsModel createUpdateEntity() {
-        return PersonsModel.builder()
-                .idCard(UPDATE_IDCARD)
-                .name(UPDATE_NAME)
-                .lastName(UPDATE_LASTNAME)
-                .dateBirth(UPDATE_DATEBIRTH)
                 .build();
     }
 
