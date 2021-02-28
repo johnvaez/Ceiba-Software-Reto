@@ -62,10 +62,8 @@ export class FormPersonsComponent implements OnInit {
     .subscribe(res => {
         if(res['status']){
 
-          this.register = this.formBuilder.group({
-            idCard: ['', Validators.required],
-           });
-           
+          this.register.get('idCard').reset(); 
+
           Swal.fire('Error',res['message'],'error')
         }
     });
@@ -78,10 +76,7 @@ export class FormPersonsComponent implements OnInit {
    
     if(dateNow.getFullYear() - yearBirth[0] < 18) {
 
-       this.register = this.formBuilder.group({
-        dateBirth: ['', Validators.required],
-       });
-
+      this.register.get('dateBirth').reset(); 
       Swal.fire('Error','Menores de edad no se pueden registrar','error')
     }
 

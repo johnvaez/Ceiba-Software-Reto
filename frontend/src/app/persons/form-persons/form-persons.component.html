@@ -21,7 +21,7 @@
                 <input type="text" onkeypress="if(isNaN(String.fromCharCode(event.keyCode) )) return false;" class="form-control" (focusout)="validateIdCard($event)" formControlName="idCard" [ngClass]="{ 'is-invalid': submitted && validate.idCard.errors }">
             </div>
             <div class="col">
-                <label class="form-label">Apellido</label>
+                <label class="form-label">Fecha de Nacimiento</label>
                 <input type="date" class="form-control" (change)="validateAge($event)" formControlName="dateBirth" [ngClass]="{ 'is-invalid': submitted && validate.dateBirth.errors }">
             </div>
             </div>
