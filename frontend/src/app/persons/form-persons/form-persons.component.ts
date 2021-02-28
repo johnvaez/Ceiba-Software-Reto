@@ -15,9 +15,11 @@ import {  PersonsService } from '../../services/persons.service';
 })
 export class FormPersonsComponent implements OnInit {
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private formBuilder: FormBuilder, 
-    private personsService: PersonsService) { }
+    private personsService: PersonsService
+    ) { }
 
   register: FormGroup;
   submitted = false;
@@ -56,6 +58,7 @@ export class FormPersonsComponent implements OnInit {
 
   }
 
+  //Validar si ya existe el No. de cédula
   validateIdCard(event: any) {
    
     this.personsService.validateIdCard(event.target.value)
@@ -69,6 +72,7 @@ export class FormPersonsComponent implements OnInit {
     });
   }
 
+  //Validar si la persona es menor de edad
   validateAge(event: any) {
 
     var yearBirth = event.target.value.split("-");
