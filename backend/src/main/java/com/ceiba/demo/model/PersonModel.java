@@ -8,13 +8,16 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Builder(toBuilder = true)
+/**
+ * The type Person model.
+ */
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Data
 @Table(name = "persons")
-public class PersonsModel {
+public class PersonModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

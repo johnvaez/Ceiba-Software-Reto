@@ -1,11 +1,20 @@
 package com.ceiba.demo.repository;
 
-import com.ceiba.demo.model.PersonsModel;
+import com.ceiba.demo.model.PersonModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+/**
+ * The interface Person repository.
+ */
 @Repository
-public interface PersonRepository extends JpaRepository<PersonsModel, Long> {
+public interface PersonRepository extends JpaRepository<PersonModel, Long> {
 
-    Boolean existsPersonsModelByIdCard(Long idCard);
+    /**
+     * Exists persons model by id card boolean.
+     *
+     * @param idCard the id card
+     * @return the boolean
+     */
+    Boolean existsPersonsModelByIdCard(Integer idCard);
 }

@@ -47,7 +47,6 @@ export class PersonsService {
     )
   } 
 
-
    // Manejo de errores
    errorHandl(error) {
     let errorMessage = '';

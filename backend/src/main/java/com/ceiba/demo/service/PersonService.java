@@ -1,8 +1,10 @@
 package com.ceiba.demo.service;
 
 import com.ceiba.demo.classes.MessageResponse;
-import com.ceiba.demo.model.PersonsModel;
+import com.ceiba.demo.model.PersonModel;
 import com.ceiba.demo.repository.PersonRepository;
+import com.ceiba.demo.service.dto.PersonDto;
+import com.ceiba.demo.service.mapper.PersonMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -10,38 +12,65 @@ import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 
+/**
+ * The type Person service.
+ */
 @Service
 public class PersonService {
 
     private final PersonRepository personRepository;
+    private final PersonMapper personMapper;
 
-    public PersonService(PersonRepository personRepository) {
+    /**
+     * Instantiates a new Person service.
+     *
+     * @param personRepository the person repository
+     * @param personMapper     the person mapper
+     */
+    public PersonService(PersonRepository personRepository, PersonMapper personMapper) {
         this.personRepository = personRepository;
+        this.personMapper = personMapper;
     }
 
-    public HttpStatus createPerson(PersonsModel personsModel) {
-
+    /**
+     * Create person http status.
+     *
+     * @param personDto the person dto
+     * @return the http status
+     */
+    public HttpStatus createPerson(PersonDto personDto) {
         try {
-            personRepository.save(personsModel);
+            personRepository.save(personMapper.toEntity(personDto));
             return HttpStatus.OK;
 
-        }catch (HttpClientErrorException e){
+        } catch (HttpClientErrorException e) {
             return HttpStatus.BAD_REQUEST;
         }
     }
 
-    public List<PersonsModel> getPersons() {
+    /**
+     * Gets persons.
+     *
+     * @return the persons
+     */
+    public List<PersonModel> getPersons() {
 
-        List<PersonsModel> listPersons = personRepository.findAll();
+        List<PersonModel> listPersons = personRepository.findAll();
         return listPersons;
     }
 
-    public ResponseEntity<MessageResponse> validateidCard(Long idCard) {
+    /**
+     * Validateid card response entity.
+     *
+     * @param idCard the id card
+     * @return the response entity
+     */
+    public ResponseEntity<MessageResponse> validateidCard(Integer idCard) {
 
         Boolean existsIdCard = personRepository.existsPersonsModelByIdCard(idCard);
 
         if (existsIdCard) {
-            return ResponseEntity.ok(new MessageResponse().status(true).message("No. de cédula ya existe!"));
+            return ResponseEntity.ok(new MessageResponse().status(true).message("No. de cédula "+ idCard +" ya existe!"));
         }
 
         return null;

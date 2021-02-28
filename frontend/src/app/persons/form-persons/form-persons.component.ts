@@ -51,15 +51,21 @@ export class FormPersonsComponent implements OnInit {
          this.router.navigate(['/personsList']);
          Swal.fire('Registro exitoso','Persona registrada','success')
        }
+
     });
 
   }
 
-  onFocusOutEvent(event: any) {
+  validateIdCard(event: any) {
    
     this.personsService.validateIdCard(event.target.value)
     .subscribe(res => {
         if(res['status']){
+
+          this.register = this.formBuilder.group({
+            idCard: ['', Validators.required],
+           });
+           
           Swal.fire('Error',res['message'],'error')
         }
     });
@@ -71,11 +77,14 @@ export class FormPersonsComponent implements OnInit {
     var dateNow = new Date();
    
     if(dateNow.getFullYear() - yearBirth[0] < 18) {
-      
+
+       this.register = this.formBuilder.group({
+        dateBirth: ['', Validators.required],
+       });
+
       Swal.fire('Error','Menores de edad no se pueden registrar','error')
     }
 
   }
-
 
 }
